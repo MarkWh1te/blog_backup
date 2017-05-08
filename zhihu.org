@@ -1,0 +1,5 @@
+#+TITLE:zhihu 
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+#+OPTIONS: ^:nil 
+
+https://www.zhihu.com/question/20482563/answer/149424539

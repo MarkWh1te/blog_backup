@@ -1,0 +1,27 @@
+#+TITLE: Python good library
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+#+OPTIONS: ^:nil 
+
+* about math
+** [[http://matplotlib.org/][matplotlib]]
+** [[http://www.numpy.org/][numpy]]
+*** [[http://www.bogotobogo.com/python/python_numpy_matrix_tutorial.php][matrix and vector turtorial]]
+****  eye 对角矩阵 full 可以填充矩阵为同一个数值
+* itertoolsk
+  [[http://stackoverflow.com/questions/4114167/checking-if-a-number-is-a-prime-number-in-python][example test]]
+* Socket
+** [[http://www.tutorialspoint.com/python/python_networking.htm][socket turtorial]]
+   [[https://docs.python.org/2.7/howto/sockets.html][doc python turtorial]]
+   [[http://steelkiwi.com/blog/working-tcp-sockets/][a more complex turtorial]]
+* coroutine
+** [[https://github.com/gevent/gevent][gevent]]
+*** Fast event loop based on libev (epoll on Linux, kqueue on FreeBSD).
+
+* search engine 
+  whoosh
+* testing
+  [[http://locust.io/][the load speed test]]
+
+* json
+** import json
+*** 如果要让 json dumps 的时候显示中文只要加入 ensure_ascii=False 就可以

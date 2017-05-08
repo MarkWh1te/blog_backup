@@ -1,0 +1,18 @@
+#+TITLE: Flask
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+#+OPTIONS: ^:nil 
+* crontab run  bash
+** * */24 * * * cd /home/mark/.org && sh daily_rsync.sh
+* KILl command
+  - SIGHUP	
+  Hang up signal. Programs can listen for this signal and act (or not act) upon it.
+  - SIGINT	
+  Interrupt signal. This signal is given to processes to interrupt them. Programs can process this signal and act upon it. You can also issue this signal directly by typing control-c in the terminal window where the program is running.
+  - SIGTERM	
+  Termination signal. This signal is given to processes to terminate them. Again, programs can process this signal and act upon it. You can also issue this signal directly by typing control-c in the terminal window where the program is running. This is the default signal sent by the kill command if no signal is specified.
+  - SIGKILL	
+  Kill signal. This signal causes the immediate termination of the process by the Linux kernel. Programs cannot listen 
+* chmod
+  - [[http://www.computerhope.com/unix/uchmod.html][read info]]
+* [[https://github.com/michael-lazar/rtv][reddit terminal]]
+* command line dict [[https://linux.die.net/man/1/dict][dict]]

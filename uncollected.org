@@ -1,0 +1,19 @@
+#+TITLE: uncollected things
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+
+* sort out the reference materials when i have time
+
+[[https://doomzhou.github.io/coder/2015/03/09/Python-Requests-socks-proxy.html][proxy pip]]
+
+[[https://github.com/warmheartli/ChatBotCourse][ml]]
+
+https://github.com/lu-ko/scala-coursera-progfun/
+
+https://book.douban.com/review/5601964/
+
+https://gist.github.com/jottr/a2351377b7584abf100b
+
+* gob seek
+https://www.v2ex.com/t/340385#reply4
+* free book
+http://freecomputerbooks.com/

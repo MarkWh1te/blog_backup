@@ -1,0 +1,22 @@
+#+TITLE: celery
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+#+OPTIONS: ^:nil 
+
+* Don't pass model objects to tasks
+** Since tasks don't run immediately, by the time a task runs and looks at a model object that was passed to it, the corresponding record in the database might have changed. If the task then does something to the model object and saves it, those changes in the database are overwritten by older data.
+   It's almost always safer to save the object, pass the record's key, and look up the object again in the task
+#+BEGIN_SRC python
+    myobject.save()
+    mytask.delay(myobject.pk)
+    @task
+    def mytask(pk):
+        myobject = MyModel.objects.get(pk=pk)
+        ...
+#+END_SRC 
+* celery 清空队列中所有未完成的任务
+  celery -A proj purge
+* celery 设置worker 的数量
+  -c + worker_number
+* django celery 不执行　send due task
+  [[http://stackoverflow.com/questions/19997989/periodic-task-for-celery-sent-but-not-executed][SO Link]]
+ 

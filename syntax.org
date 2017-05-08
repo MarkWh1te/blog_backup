@@ -1,0 +1,155 @@
+#+TITLE: Python syntax
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+#+OPTIONS:  ^:nil 
+
+* How Instgram solve python shared memory problem
+** [[https://engineering.instagram.com/dismissing-python-garbage-collection-at-instagram-4dca40b29172#.1h1f0sg0e][instagram lin]]
+** 恩 他们最后 disable 了 gc  
+* 参数传递
+  对于变量（与对象相对的概念），其实，python 函数参数传递可以理解为就是变量传值操作，用 C++的方式理解，就是对 void*赋值。如果这个变量的值不变，我们看似就是引用，如果这个变量的值改变，我们看着像是在赋值。
+* Decorater
+** stack overflow
+   [[http://stackoverflow.com/questions/739654/how-to-make-a-chain-of-function-decorators-in-python][what is decorators]]
+**  @classmethod and @staticmethod
+   [[http://stackoverflow.com/questions/12179271/python-classmethod-and-staticmethod-for-beginner][staticmethod and classmethod on SO]]
+* Super 
+** Raymond Hettinger 's paper
+   [[https://rhettinger.wordpress.com/2011/05/26/super-considered-super/][super considered super]]
+** Super() ," object. new ()" and "object. del ()"
+   "object. new ()"
+   自定义 " new ()" 方法一般并不常用，而且容易与  init () 相混淆。实际上这两个方法也确实相似，比如他们都是在创建类的实例时会被默认调用的方法，而且创建实例时传入的参数也都会传到这两个方法里。但他们也有很重要的区别，比如对  new () 的调用比  init () 要早，new () 有返回值，init () 木有。
+
+   来理一下创建类的实例的过程，即解释器处理 foo = MyClass() 这条语句的步骤的话，大约是这样的（可能并不完全准确）：
+
+   创建 foo 这个名字
+   调用 MyClass 类的  new () 静态方法，返回一个类实例
+   将 new () 返回的类实例赋值给 foo
+   这个实例被当做 self 参数传给  init ()，以完成该实例的初始化工作
+   即，真正完成构造实例工作的是  new () 方法，调用它需要一个默认参数 cls，就是将要返回的这个实例所属的类（MyClass）。一般情况下因为  new () 极少被覆盖，最终调用的都是 object. new ()。这个时候我们的实例已经被创建了，就可以当做 self 参数传给  init () 了，init () 做的工作其实仅是初始化一些属性值之类的，与严格意义下的“构造”实例无关。
+
+   这里拿出  new () 来说主要是昨晚看到一道题，说是如何用 Python 实现单例模式，就是某个类同时只允许存在一个实例的意思。比较直接的想法应该是在类属性里添加一个布尔开关（比如就叫 cer 好了），创建实例时检查 cer 的值，True 就允许创建，False 就引发异常。那么这个检查的过程如果安装在  init () 里肯定是不行的，因为那时实例已经被创建出来了，所以正确的检查位置应该是  new () 里面。第二点，cer 这个开关还应该在第一个实例被删除时自动打回到 True 上，所以还需要覆盖  del () 方法：
+#+BEGIN_SRC python
+class Singleton(object):
+    def __new__ (cls):
+        if cls.cer:
+            cls.cer = False
+        return super().__new__(cls)
+        else:raise TypeError('[%s] could be instantiated only once!'%cls. name )
+
+        cer = True
+
+   def __del__ (self):
+        self.class.cer = True
+#+END_SRC 
+   运行如下：
+
+   >>> a = Singleton()
+   >>> a
+   < main .Singleton object at 0x0000000009CAC630>
+   >>> b = Singleton()
+   Traceback (most recent call last):
+   File "<pyshell#2>", line 1, in <module>
+   b = Singleton()
+   File "C:\Users\July\Desktop\test.py", line 8, in  new 
+   else:raise TypeError('[%s] could be instantiated only once!'%cls. name )
+   TypeError: [Singleton] could be instantiated only once!
+   >>> b
+   Traceback (most recent call last):
+   File "<pyshell#3>", line 1, in <module>
+   b
+   NameError: name 'b' is not defined
+   >>> del a
+   >>> b = Singleton()
+   >>> b
+   < main .Singleton object at 0x0000000009CAC358>
+   看起来非常好，不过上面的运行结果其实被删减过，实际上很有可能：del a 之后也创建不出 b 实例，即那时 Singleton.cer 的值仍为 False。为什么呢，这就要从 Python 的垃圾回收器说起了。
+
+   object. del ()
+   Python 靠引用计数的机制来运行垃圾回收器，所以 del a 这条语句做的事情其实仅仅是将 a 所指向的实例的引用数 -1（当然 a 这个名字也被删掉了），实例的  del () 方法不一定会得到执行（因为不排除还有其他的引用指向该实例）。只有当该实例的引用计数减到 0 的时候，垃圾回收器才会来处理它，并调用  del () 方法。不过即使像上面的例子那样，实例只有 a 这一个引用，并且我们也删掉了这个引用，回收器也是不一定会立即回收掉该实例的。你很可能需要“等一会”。。。
+
+   如果不想等的话，则可以手动运行一次回收器。回收器有一个名为 gc 的模块接口，运行 gc.collect() 函数就可以手动回收，所以上面例子的完美运行结果其实是这样子的：
+
+   >>> a = Singleton()
+   >>> a
+   < main .Singleton object at 0x0000000009CAC630>
+   >>> b = Singleton()
+   Traceback (most recent call last):
+   File "<pyshell#2>", line 1, in <module>
+   b = Singleton()
+   File "C:\Users\July\Desktop\test.py", line 8, in  new 
+   else:raise TypeError('[%s] could be instantiated only once!'%cls. name )
+   TypeError: [Singleton] could be instantiated only once!
+   >>> b
+   Traceback (most recent call last):
+   File "<pyshell#3>", line 1, in <module>
+   b
+   NameError: name 'b' is not defined
+   >>> del a
+   >>> Singleton.cer
+   False
+   >>> import gc
+   >>> gc.collect()
+   0
+   >>> Singleton.cer
+   True
+   >>> b = Singleton()
+   >>> b
+   < main .Singleton object at 0x0000000009CAC358>
+   可以看到这个 object. del () 方法并不怎么靠谱，所以一般还是能不用就不用吧，或者至少知道他们可能不会被立即调用，又或者你非要把 gc.collect() 写进  new () 里也行。
+
+   super()
+   在子类中覆盖父类的方法，添加一些代码然后再把父类的同名方法调用起来是一种满典型的用法，所以这里 super() 出现的机会也多。一般我们想要得到一个绑定的父类，都是这样调用 super：
+
+   super(type, obj) -> bound super object; requires isinstance(obj, type)       
+
+   super(type, type2) -> bound super object; requires issubclass(type2, type)
+
+   比如：
+#+BEGIN_SRC  python
+   class P(object):
+       def __init__(self):
+           print('calling  init  of P')
+
+   class C(P):
+       def __init__(self):
+           return super(C,self).__init__()
+#+END_SRC 
+   子类的 C 里面调用父类 P 的  init () 方法（绑定的），就给 super() 函数传了 C 和 C 的实例 self 两个参数表示绑定到 self 上的 P 类。这里也可以用  class  、self. class  或者 type(self) 来代替直接给出当前类的名字 C。
+
+   不过因为这种使用 super() 的方式太典型了，所以在 Python3 里可以无参数使用 super() 函数，效果和传两个参数一样：
+
+   super() -> same as super( class , <first argument>)
+
+   这里 <first argument>指代上面的 obj 或者 type2（或者说 self 和 cls），都是可绑定的对象。这也就是最上面的代码没有给 super() 传参数也可以运行的原因。至于为什么最开始的例子里 super(). new (cls)还给传了个 cls 参数，这是因为  new  方法是静态方法，不能像 super(). init () 一样因为 super 对象已经绑定了 self 就不给  init () 传 self 了。
+
+   另外如果不需要绑定，可以只给 super() 传一个参数：
+
+   super(type) -> unbound super object
+
+   最后要说的是调用父类方法时的语句，可以看到上面的两个例子不管父类方法有没有返回值（new  或  init），都使用 return 来调用。这样的好处在于不用去关心该方法到底有没有返回值，就算没有，return expression 的 expression 也一样会被执行，然后 return 一个 None，这显然没什么坏处。
+
+* __enter__, __exit__ and with statement 
+  [http://stackoverflow.com/questions/1984325/explaining-pythons-enter-and-exit][SO]
+  Using these magic methods (__enter__, __exit__) allows you to implement objects which can be used easily with the with statement.
+
+The idea is that it makes it easy to build code which needs some 'cleandown' code executed (think of it as a try-finally block). Some more explanation here.
+
+A useful example could be a database connection object (which then automagically closes the connection once the corresponding 'with'-statement goes out of scope):
+
+class DatabaseConnection(object):
+
+    def __enter__(self):
+        # make a database connection and return it
+        ...
+        return self.dbconn
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # make sure the dbconnection gets closed
+        self.dbconn.close()
+        ...
+As explained above, use this object with the with statement (you may need to do from __future__ import with_statement at the top of the file if you're on Python 2.5).
+
+with DatabaseConnection() as mydbconn:
+    # do stuff
+* garbage collection
+  https://www.quora.com/How-does-garbage-collection-in-Python-work

@@ -1,0 +1,11 @@
+#+TITLE: mysql
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+#+OPTIONS: toc:nil ^:nil 
+
+
+* MySQL server has gone away
+  This section also covers the related Lost connection to server during query error.
+The most common reason for the MySQL server has gone away error is that the server timed out and closed the connection. In this case, you normally get one of the following error codes (which one you get is operating system-dependent).
+By default, the server closes the connection after eight hours if nothing has happened. You can change the time limit by setting the wait_timeout variable when you start mysqld. 
+
+

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-03-06 Mon 18:17 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python syntax</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="mark" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Python syntax</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline3">1. How Instgram solve python shared memory problem</a>
+<ul>
+<li><a href="#orgheadline1">1.1. instagram lin</a></li>
+<li><a href="#orgheadline2">1.2. 恩 他们最后 disable 了 gc</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline4">2. 参数传递</a></li>
+<li><a href="#orgheadline7">3. Decorater</a>
+<ul>
+<li><a href="#orgheadline5">3.1. stack overflow</a></li>
+<li><a href="#orgheadline6">3.2. @classmethod and @staticmethod</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline10">4. Super</a>
+<ul>
+<li><a href="#orgheadline8">4.1. Raymond Hettinger 's paper</a></li>
+<li><a href="#orgheadline9">4.2. Super() ," object. new ()" and "object. del ()"</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline11">5. __enter__, <span class="underline"><span class="underline">exit</span></span> and with statement</a></li>
+<li><a href="#orgheadline12">6. garbage collection</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> How Instgram solve python shared memory problem</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> <a href="https://engineering.instagram.com/dismissing-python-garbage-collection-at-instagram-4dca40b29172#.1h1f0sg0e">instagram lin</a></h3>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> 恩 他们最后 disable 了 gc</h3>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">2</span> 参数传递</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+对于变量（与对象相对的概念），其实，python 函数参数传递可以理解为就是变量传值操作，用 C++的方式理解，就是对 void*赋值。如果这个变量的值不变，我们看似就是引用，如果这个变量的值改变，我们看着像是在赋值。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">3</span> Decorater</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">3.1</span> stack overflow</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<a href="http://stackoverflow.com/questions/739654/how-to-make-a-chain-of-function-decorators-in-python">what is decorators</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">3.2</span> @classmethod and @staticmethod</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<a href="http://stackoverflow.com/questions/12179271/python-classmethod-and-staticmethod-for-beginner">staticmethod and classmethod on SO</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">4</span> Super</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">4.1</span> Raymond Hettinger 's paper</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<a href="https://rhettinger.wordpress.com/2011/05/26/super-considered-super/">super considered super</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">4.2</span> Super() ," object. new ()" and "object. del ()"</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+"object. new ()"
+自定义 " new ()" 方法一般并不常用，而且容易与  init () 相混淆。实际上这两个方法也确实相似，比如他们都是在创建类的实例时会被默认调用的方法，而且创建实例时传入的参数也都会传到这两个方法里。但他们也有很重要的区别，比如对  new () 的调用比  init () 要早，new () 有返回值，init () 木有。
+</p>
+
+<p>
+来理一下创建类的实例的过程，即解释器处理 foo = MyClass() 这条语句的步骤的话，大约是这样的（可能并不完全准确）：
+</p>
+
+<p>
+创建 foo 这个名字调用 MyClass 类的  new () 静态方法，返回一个类实例将 new () 返回的类实例赋值给 foo
+这个实例被当做 self 参数传给  init ()，以完成该实例的初始化工作即，真正完成构造实例工作的是  new () 方法，调用它需要一个默认参数 cls，就是将要返回的这个实例所属的类（MyClass）。一般情况下因为  new () 极少被覆盖，最终调用的都是 object. new ()。这个时候我们的实例已经被创建了，就可以当做 self 参数传给  init () 了，init () 做的工作其实仅是初始化一些属性值之类的，与严格意义下的“构造”实例无关。
+</p>
+
+<p>
+这里拿出  new () 来说主要是昨晚看到一道题，说是如何用 Python 实现单例模式，就是某个类同时只允许存在一个实例的意思。比较直接的想法应该是在类属性里添加一个布尔开关（比如就叫 cer 好了），创建实例时检查 cer 的值，True 就允许创建，False 就引发异常。那么这个检查的过程如果安装在  init () 里肯定是不行的，因为那时实例已经被创建出来了，所以正确的检查位置应该是  new () 里面。第二点，cer 这个开关还应该在第一个实例被删除时自动打回到 True 上，所以还需要覆盖  del () 方法：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #268bd2; font-weight: bold;">class</span> <span style="color: #af005f; font-weight: bold;">Singleton</span><span style="color: #268bd2;">(</span><span style="color: #268bd2;">object</span><span style="color: #268bd2;">)</span>:
+    <span style="color: #268bd2; font-weight: bold;">def</span> <span style="color: #8700af; font-weight: bold;">__new__</span> <span style="color: #268bd2;">(</span>cls<span style="color: #268bd2;">)</span>:
+        <span style="color: #268bd2; font-weight: bold;">if</span> cls.cer:
+            <span style="color: #af5fd7;">cls.cer</span> = <span style="color: #8700af;">False</span>
+        <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #268bd2;">super</span><span style="color: #268bd2;">()</span>.__new__<span style="color: #268bd2;">(</span>cls<span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2; font-weight: bold;">else</span>:<span style="color: #268bd2; font-weight: bold;">raise</span> <span style="color: #af005f; font-weight: bold;">TypeError</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">'[%s] could be instantiated only once!'</span>%cls. name <span style="color: #268bd2;">)</span>
+
+        <span style="color: #af5fd7;">cer</span> = <span style="color: #8700af;">True</span>
+
+   <span style="color: #268bd2; font-weight: bold;">def</span> <span style="color: #8700af; font-weight: bold;">__del__</span> <span style="color: #268bd2;">(</span><span style="color: #268bd2; font-weight: bold;">self</span><span style="color: #268bd2;">)</span>:
+        <span style="color: #268bd2; font-weight: bold;">self</span>.<span style="color: #268bd2; font-weight: bold;">class</span>.cer = <span style="color: #8700af;">True</span>
+</pre>
+</div>
+<p>
+运行如下：
+</p>
+
+<p>
+&gt;&gt;&gt; a = Singleton()
+&gt;&gt;&gt; a
+&lt; main .Singleton object at 0x0000000009CAC630&gt;
+&gt;&gt;&gt; b = Singleton()
+Traceback (most recent call last):
+File "&lt;pyshell#2&gt;", line 1, in &lt;module&gt;
+b = Singleton()
+File "C:\Users\July\Desktop\test.py", line 8, in  new 
+else:raise TypeError('[%s] could be instantiated only once!'%cls. name )
+TypeError: [Singleton] could be instantiated only once!
+&gt;&gt;&gt; b
+Traceback (most recent call last):
+File "&lt;pyshell#3&gt;", line 1, in &lt;module&gt;
+b
+NameError: name 'b' is not defined
+&gt;&gt;&gt; del a
+&gt;&gt;&gt; b = Singleton()
+&gt;&gt;&gt; b
+&lt; main .Singleton object at 0x0000000009CAC358&gt;
+看起来非常好，不过上面的运行结果其实被删减过，实际上很有可能：del a 之后也创建不出 b 实例，即那时 Singleton.cer 的值仍为 False。为什么呢，这就要从 Python 的垃圾回收器说起了。
+</p>
+
+<p>
+object. del ()
+Python 靠引用计数的机制来运行垃圾回收器，所以 del a 这条语句做的事情其实仅仅是将 a 所指向的实例的引用数 -1（当然 a 这个名字也被删掉了），实例的  del () 方法不一定会得到执行（因为不排除还有其他的引用指向该实例）。只有当该实例的引用计数减到 0 的时候，垃圾回收器才会来处理它，并调用  del () 方法。不过即使像上面的例子那样，实例只有 a 这一个引用，并且我们也删掉了这个引用，回收器也是不一定会立即回收掉该实例的。你很可能需要“等一会”。。。
+</p>
+
+<p>
+如果不想等的话，则可以手动运行一次回收器。回收器有一个名为 gc 的模块接口，运行 gc.collect() 函数就可以手动回收，所以上面例子的完美运行结果其实是这样子的：
+</p>
+
+<p>
+&gt;&gt;&gt; a = Singleton()
+&gt;&gt;&gt; a
+&lt; main .Singleton object at 0x0000000009CAC630&gt;
+&gt;&gt;&gt; b = Singleton()
+Traceback (most recent call last):
+File "&lt;pyshell#2&gt;", line 1, in &lt;module&gt;
+b = Singleton()
+File "C:\Users\July\Desktop\test.py", line 8, in  new 
+else:raise TypeError('[%s] could be instantiated only once!'%cls. name )
+TypeError: [Singleton] could be instantiated only once!
+&gt;&gt;&gt; b
+Traceback (most recent call last):
+File "&lt;pyshell#3&gt;", line 1, in &lt;module&gt;
+b
+NameError: name 'b' is not defined
+&gt;&gt;&gt; del a
+&gt;&gt;&gt; Singleton.cer
+False
+&gt;&gt;&gt; import gc
+&gt;&gt;&gt; gc.collect()
+0
+&gt;&gt;&gt; Singleton.cer
+True
+&gt;&gt;&gt; b = Singleton()
+&gt;&gt;&gt; b
+&lt; main .Singleton object at 0x0000000009CAC358&gt;
+可以看到这个 object. del () 方法并不怎么靠谱，所以一般还是能不用就不用吧，或者至少知道他们可能不会被立即调用，又或者你非要把 gc.collect() 写进  new () 里也行。
+</p>
+
+<p>
+super()
+在子类中覆盖父类的方法，添加一些代码然后再把父类的同名方法调用起来是一种满典型的用法，所以这里 super() 出现的机会也多。一般我们想要得到一个绑定的父类，都是这样调用 super：
+</p>
+
+<p>
+super(type, obj) -&gt; bound super object; requires isinstance(obj, type)       
+</p>
+
+<p>
+super(type, type2) -&gt; bound super object; requires issubclass(type2, type)
+</p>
+
+<p>
+比如：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #268bd2; font-weight: bold;">class</span> <span style="color: #af005f; font-weight: bold;">P</span><span style="color: #268bd2;">(</span><span style="color: #268bd2;">object</span><span style="color: #268bd2;">)</span>:
+    <span style="color: #268bd2; font-weight: bold;">def</span> <span style="color: #8700af; font-weight: bold;">__init__</span><span style="color: #268bd2;">(</span><span style="color: #268bd2; font-weight: bold;">self</span><span style="color: #268bd2;">)</span>:
+        <span style="color: #268bd2; font-weight: bold;">print</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">'calling  init  of P'</span><span style="color: #268bd2;">)</span>
+
+<span style="color: #268bd2; font-weight: bold;">class</span> <span style="color: #af005f; font-weight: bold;">C</span><span style="color: #268bd2;">(</span>P<span style="color: #268bd2;">)</span>:
+    <span style="color: #268bd2; font-weight: bold;">def</span> <span style="color: #8700af; font-weight: bold;">__init__</span><span style="color: #268bd2;">(</span><span style="color: #268bd2; font-weight: bold;">self</span><span style="color: #268bd2;">)</span>:
+        <span style="color: #268bd2; font-weight: bold;">return</span> <span style="color: #268bd2;">super</span><span style="color: #268bd2;">(</span>C,<span style="color: #268bd2; font-weight: bold;">self</span><span style="color: #268bd2;">)</span>.__init__<span style="color: #268bd2;">()</span>
+</pre>
+</div>
+<p>
+子类的 C 里面调用父类 P 的  init () 方法（绑定的），就给 super() 函数传了 C 和 C 的实例 self 两个参数表示绑定到 self 上的 P 类。这里也可以用  class  、self. class  或者 type(self) 来代替直接给出当前类的名字 C。
+</p>
+
+<p>
+不过因为这种使用 super() 的方式太典型了，所以在 Python3 里可以无参数使用 super() 函数，效果和传两个参数一样：
+</p>
+
+<p>
+super() -&gt; same as super( class , &lt;first argument&gt;)
+</p>
+
+<p>
+这里 &lt;first argument&gt;指代上面的 obj 或者 type2（或者说 self 和 cls），都是可绑定的对象。这也就是最上面的代码没有给 super() 传参数也可以运行的原因。至于为什么最开始的例子里 super(). new (cls)还给传了个 cls 参数，这是因为  new  方法是静态方法，不能像 super(). init () 一样因为 super 对象已经绑定了 self 就不给  init () 传 self 了。
+</p>
+
+<p>
+另外如果不需要绑定，可以只给 super() 传一个参数：
+</p>
+
+<p>
+super(type) -&gt; unbound super object
+</p>
+
+<p>
+最后要说的是调用父类方法时的语句，可以看到上面的两个例子不管父类方法有没有返回值（new  或  init），都使用 return 来调用。这样的好处在于不用去关心该方法到底有没有返回值，就算没有，return expression 的 expression 也一样会被执行，然后 return 一个 None，这显然没什么坏处。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">5</span> __enter__, <span class="underline"><span class="underline">exit</span></span> and with statement</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+[<a href="http://stackoverflow.com/questions/1984325/explaining-pythons-enter-and-exit%5D%5BSO">http://stackoverflow.com/questions/1984325/explaining-pythons-enter-and-exit%5D%5BSO</a>]
+Using these magic methods (<span class="underline"><span class="underline">enter</span></span>, <span class="underline"><span class="underline">exit</span></span>) allows you to implement objects which can be used easily with the with statement.
+</p>
+
+<p>
+The idea is that it makes it easy to build code which needs some 'cleandown' code executed (think of it as a try-finally block). Some more explanation here.
+</p>
+
+<p>
+A useful example could be a database connection object (which then automagically closes the connection once the corresponding 'with'-statement goes out of scope):
+</p>
+
+<p>
+class DatabaseConnection(object):
+</p>
+
+<p>
+def __enter__(self):
+</p>
+
+<p>
+&#x2026;
+return self.dbconn
+</p>
+
+<p>
+def __exit__(self, exc_type, exc_val, exc_tb):
+</p>
+
+<p>
+        self.dbconn.close()
+        &#x2026;
+As explained above, use this object with the with statement (you may need to do from <span class="underline"><span class="underline">future</span></span> import with_statement at the top of the file if you're on Python 2.5).
+</p>
+
+<p>
+with DatabaseConnection() as mydbconn:
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">6</span> garbage collection</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<a href="https://www.quora.com/How-does-garbage-collection-in-Python-work">https://www.quora.com/How-does-garbage-collection-in-Python-work</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mark</p>
+<p class="date">Created: 2017-03-06 Mon 18:17</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

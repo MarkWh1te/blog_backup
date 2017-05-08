@@ -1,0 +1,172 @@
+#+TITLE: Mark White Personal Wiki 
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+#+OPTIONS:  ^:nil 
+
+* Emacs
+** spacemacs
+*** [[https://github.com/syl20bnr/spacemacs/tree/master/layers][view layers doc]]
+*** [[https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Btags][tags]]
+*** [[https://yuyang0.github.io/notes/spacemacs.html][shortcut summary]]
+** vim shortcut
+*** o 在下一行插入
+*** O 在上一行插入
+*** A 到行尾插入
+*** :%s/old/new/g 全局替换
+*** :line number 跳到某一行
+*** cw 替换到 word 结尾
+*** R 替换到结尾
+*** c$ 替换到 line 结尾
+** org mode
+** [[https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Bsource-control/git][magit]]
+* Linux 
+** [[https://zh.wikipedia.org/wiki/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6][File descriptor]]
+   [[http://events.linuxfoundation.jp/sites/events/files/slides/fd_0.pdf][unix file stystem]]
+** [[file:shell.org][shell]]
+** [[file:app_config.org][app_config]]
+** [[http://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c][memory]]
+* Database
+** [[file:mysql.org][mysql]]
+** [[file:mongodb.org][mongoDB]]
+*** db.collection.drop()
+*** in python you must from bson import ObjectId to initialization a primry key 
+* Python
+** [[file:syntax.org][syntax]]
+** [[file:django.org][django]]
+** [[file:flask.org][flask]]
+** [[file:celery.org][celery]]
+** [[file:library.org][library]]
+** numpy
+*** [[http://stackoverflow.com/questions/4151128/what-are-the-differences-between-numpy-arrays-and-matrices-which-one-should-i-u][ differences between numpy.matrix and numpy.array ]]
+*** [[http://stackoverflow.com/questions/19389910/in-python-numpy-what-is-a-dimension-and-axis][dimension shape and axis]]
+* Internets
+** having sex with gfw
+*** homebrew fix
+    brew 支持全局 socks 代理
+    使用前加上这一句：
+    export ALL_PROXY=socks5://127.0.0.1:portnumber
+    http://leegorous.net/blog/2012/08/10/how-to-skip-download-in-brew-install/
+** proxychains
+**** [[http://huifeng.me/2015/08/23/ProxyChains-NG-4-OSX-Setting/][proxychains]]
+**** [[https://github.com/rofl0r/proxychains-ng][git]]
+** [[https://en.wikipedia.org/wiki/Java_servlet][java servlet]]
+** [[https://en.wikipedia.org/wiki/Sockstress][sockstress]]
+* Scala
+** material
+*** sbt template generator with new command
+**** [[http://www.scala-sbt.org/0.13/docs/sbt-new-and-Templates.html][this is official guide]]
+** sbt slow problem
+*** replace ~/.sbt/repositories with my file in blackmagic please:)!
+*** http://centaur.github.io/repox/
+** traning site
+*** [[https://www.scala-exercises.org/std_lib/asserts][scala-excerise]]
+** knowledge
+*** [[http://stackoverflow.com/questions/13052735/is-my-understanding-of-below-scala-code-correct][understanding type keyword]]
+**** type is alas of type signature
+*** the difference between *class* and *object*
+**** A class is a definition, a description. It defines a type in terms of methods and composition of other types.
+**** An object is a singleton -- an instance of a class which is guaranteed to be unique. For every object in the code, an anonymous class is created, which inherits from whatever classes you declared object to implement. This class cannot be seen from Scala source code -- though you can get at it through reflection.
+*** [[https://segmentfault.com/a/1190000005083578][::,:::,:+,+:的区别]]
+*** [[http://www.brunton-spall.co.uk/post/2011/12/02/map-map-and-flatmap-in-scala/][scala map flatmap 的区别]]   flatmap 就是把 map 拍平 也可以理解为对子结构递归 map 然后展开为 list
+*** [[https://twitter.github.io/scala_school/collections.html#fold][scala fold foldleft foldright]] 
+****  foldleft cumulate a single result using a start value and this operation start with most left in sequence
+
+
+     #+BEGIN_SRC scala
+     val numbers = 1 until 10
+     numbers.foldLeft(0) { (m: Int, n: Int) => println("m: " + m + " n: " + n); m + n }
+     #+END_SRC
+
+     #+RESULTS:
+      m: 0 n: 1
+      m: 1 n: 2
+      m: 3 n: 3
+      m: 6 n: 4
+      m: 10 n: 5
+      m: 15 n: 6
+      m: 21 n: 7
+      m: 28 n: 8
+      m: 36 n: 9
+      m: 45 n: 10
+      res0: Int = 55
+
+****  foldright cumulate a single result using a start value and this operation start with most right in sequence
+     #+BEGIN_SRC scala
+     numbers.foldright(0){ (m: Int, n: Int) => println("m: " + m + " n: " + n); m + n }
+     #+END_SRC
+     #+RESULTS:
+      m: 10 n: 0
+      m: 9 n: 10
+      m: 8 n: 19
+      m: 7 n: 27
+      m: 6 n: 34
+      m: 5 n: 40
+      m: 4 n: 45
+      m: 3 n: 49
+      m: 2 n: 52
+      m: 1 n: 54
+      res0: Int = 55
+
+** data structure
+*** [[http://www.scala-lang.org/api/2.12.1/scala/collection/immutable/List.html][class List and its methods]
+* Algorithms
+** [[http://d0evi1.com/wang-jenkins-hash/][jenkins hash]]
+** algorithms
+** text book and website
+** data structure
+*** 一个有趣的数据结构 bloom filter 
+    它可以在有限的内存空间内存储无限的数据，你添加数据增加的是查询时候返回错误答案的概率。
+    [[https://en.wikipedia.org/wiki/Bloom_filter][bloom filter]]
+* Machine Learning
+** ensembling is very important !!!(at least for kaggle)
+*** [[http://mlwave.com/kaggle-ensembling-guide/ ][this is why]]
+** random forest
+*** [[https://en.wikipedia.org/wiki/Random_forest][wiki]]
+*** [[http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html][sklearn]]
+** activation function
+*** [[https://en.wikipedia.org/wiki/Rectifier_(neural_networks)][Rectifier]]
+** [[file:npl.org][npl]]
+** [[file:tensorflow.org][tensorflow]]
+** [[https://en.wikipedia.org/wiki/Scientific_notation][scientific notation]]
+*** [[http://stackoverflow.com/questions/26174531/what-is-the-meaning-of-number-1e5][so link]]
+*** 
+** GBDT
+   http://www.cnblogs.com/maybe2030/p/4734645.html
+** [[http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html][train test split]]
+* Life
+** what worth fighting for
+** good youtube vedio
+* Scheme
+** list 
+* Math
+** [[https://en.wikipedia.org/wiki/Euclidean_distance][Euclidean Distance]]
+*** 常用与 svm 的 kernel,还有 perceptron 的计算中
+*** 本质就是向量对自己点乘法然后开根号
+** [[https://en.wikipedia.org/wiki/Horner%27s_method][horner's rule]]
+   說白了就是瘋狂對 x 提取公因子
+# todo
+** 多项式公式
+** [[https://en.wikipedia.org/wiki/Sigmoid_function][sigmoid_function]]
+** [[https://en.wikipedia.org/wiki/Collatz_conjecture][Collatz_conjecture]]
+   [[http://www.ericr.nl/wondrous/index.html][website about collatz conjecture]]
+
+** [[http://www.math-prof.com/Calculus_1/Calc_Ch_06.asp][differential calculus]]
+** [[https://en.wikipedia.org/wiki/Linear_least_squares_(mathematics)][Normal Equation]]
+* font end
+** html boilerplateo
+*** [[https://github.com/h5bp/html5-boilerplate][github link]]
+** jQuery material
+*** [[http://www.w3schools.com/jquery/default.asp][w3schools]]
+*** [[http://stackoverflow.com/questions/9887032/how-to-highlight-input-words-in-autocomplete-jquery-ui][highlight autocomplete result]]
+* Coursera
+** to learn list
+*** https://www.coursera.org/learn/programming-languages  programming languages
+*** https://www.coursera.org/learn/algorithms-part1  algorithms
+*** https://www.coursera.org/learn/progfun2 function design pattern in scala
+* uncollected
+** [[file:uncollected.org][uncollected]]
+** [[file:zhihu.org][zhihu]]
+* just in mind
+** 看视频累了的时候可以看看后面讲义 
+* good quotes
+  “If you learn only methods, you’ll be tied to your methods. But if you learn principles, you can devise your own methods.” —Ralph Waldo Emerson
+

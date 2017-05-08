@@ -1,0 +1,6 @@
+#+TITLE:natural language processing 
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+
+* Term
+** [[https://en.wikipedia.org/wiki/Levenshtein_distance][Levenshtein distance]]
+** [[https://en.wikipedia.org/wiki/Hamming_distance][hamming distance]]

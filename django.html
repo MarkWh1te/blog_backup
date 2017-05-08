@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-10-26 Wed 17:38 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>django</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="mark" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">django</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline12">1. Django ORM</a>
+<ul>
+<li><a href="#orgheadline9">1.1. queryset</a>
+<ul>
+<li><a href="#orgheadline1">1.1.1. django queryset是有缓存的</a></li>
+<li><a href="#orgheadline2">1.1.2. django queryset is lazy</a></li>
+<li><a href="#orgheadline3">1.1.3. 查看某个queryset背后的sql语句</a></li>
+<li><a href="#orgheadline4">1.1.4. queryset中取第一项或者最后一项</a></li>
+<li><a href="#orgheadline5">1.1.5. 找到外键中与之相关的instances</a></li>
+<li><a href="#orgheadline7">1.1.6. Q object</a></li>
+<li><a href="#orgheadline8">1.1.7. django ForegenKey dabaseRepresentation</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline11">1.2. Command line</a>
+<ul>
+<li><a href="#orgheadline10">1.2.1. table-already-exist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">1</span> Django ORM</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">1.1</span> queryset</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1"><span class="section-number-4">1.1.1</span> django queryset是有缓存的</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+queryset 是有缓存的，a = A.objects.all(),print [i for i in a].第一次执行打印会查询数据库，然后结果会被保存在queryset内置的cache中，再执行print的时候就会取自缓存。
+很多时候会遇到仅需判断queryset 是否为空的情况，可以1. if queryset:pass 2.if queryset.count&gt;0:pass 3.if queryset.exists():pass. 三种方式性能依次提升。
+当queryset非常巨大时，cache会成为问题。此时可以queryset.iterator()，迭代器的用处就不多说了，根据具体需求情况使用。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2"><span class="section-number-4">1.1.2</span> <a href="http://blog.etianen.com/blog/2013/06/08/django-querysets/">django queryset is lazy</a></h4>
+</div>
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.1.3</span> 查看某个queryset背后的sql语句</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+print  XX.objects.all().query
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.1.4</span> queryset中取第一项或者最后一项</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+queryset.first() and queryset.last()
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #af5fd7;">p</span> = Article.objects.order_by<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'title'</span>, <span style="color: #2aa198;">'pub_date'</span><span style="color: #268bd2;">)</span>.first<span style="color: #268bd2;">()</span>
+</pre>
+</div>
+<p>
+等价于
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #268bd2; font-weight: bold;">try</span>:
+    <span style="color: #af5fd7;">p</span> = Article.objects.order_by<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'title'</span>, <span style="color: #2aa198;">'pub_date'</span><span style="color: #268bd2;">)[</span><span style="color: #8700af;">0</span><span style="color: #268bd2;">]</span>
+<span style="color: #268bd2; font-weight: bold;">except</span> <span style="color: #af005f; font-weight: bold;">IndexError</span>:
+    <span style="color: #af5fd7;">p</span> = <span style="color: #8700af;">None</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">1.1.5</span> 找到外键中与之相关的instances</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+When you define a relationship in a model (i.e., a ForeignKey, OneToOneField, or ManyToManyField), instances of that model will have a convenient API to access the related object(s).
+</p>
+
+<p>
+Using the models at the top of this page, for example, an Entry object e can get its associated Blogobject by accessing the blog attribute: e.blog.
+</p>
+
+<p>
+(Behind the scenes, this functionality is implemented by Python descriptors. This shouldn’t really matter to you, but we point it out here for the curious.)
+</p>
+
+<p>
+Django also creates API accessors for the “other” side of the relationship – the link from the related model to the model that defines the relationship. For example, a Blog object b has access to a list of all relatedEntry objects via the entry<sub>set</sub> attribute: b.entry<sub>set.all</sub>().
+</p>
+
+<p>
+All examples in this section use the sample Blog, Author and Entry models defined at the top of this page.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">1.1.6</span> Q object</h4>
+<div class="outline-text-4" id="text-1-1-6">
+</div><ol class="org-ol"><li><a id="orgheadline6"></a>django official document<br  /><div class="outline-text-5" id="text-1-1-6-1">
+<p>
+ Complex lookups with Q objects¶
+ Keyword argument queries – in filter(), etc. – are “AND”ed together. If you need to execute more complex queries (for example, queries with OR statements), you can use Q objects.
+A Q object (django.db.models.Q) is an object used to encapsulate a collection of keyword arguments. These keyword arguments are specified as in “Field lookups” above.
+</p>
+
+<p>
+For example, this Q object encapsulates a single LIKE query:
+</p>
+
+<p>
+from django.db.models import Q
+Q(question_<sub>startswith</sub>='What')
+Q objects can be combined using the &amp; and | operators. When an operator is used on two Q objects, it yields a new Q object.
+</p>
+
+<p>
+For example, this statement yields a single Q object that represents the “OR” of two "question_<sub>startswith</sub>" queries:
+</p>
+
+<p>
+Q(question_<sub>startswith</sub>='Who') | Q(question_<sub>startswith</sub>='What')
+This is equivalent to the following SQL WHERE clause:
+</p>
+
+<p>
+WHERE question LIKE 'Who%' OR question LIKE 'What%'
+You can compose statements of arbitrary complexity by combining Q objects with the &amp; and | operators and use parenthetical grouping. Also, Q objects can be negated using the ~ operator, allowing for combined lookups that combine both a normal query and a negated (NOT) query:
+</p>
+
+<p>
+Q(question_<sub>startswith</sub>='Who') | ~Q(pub<sub>date</sub>_<sub>year</sub>=2005)
+Each lookup function that takes keyword-arguments (e.g. filter(), exclude(), get()) can also be passed one or more Q objects as positional (not-named) arguments. If you provide multiple Q object arguments to a lookup function, the arguments will be “AND”ed together. For example:
+</p>
+
+<p>
+Poll.objects.get(
+    Q(question_<sub>startswith</sub>='Who'),
+    Q(pub<sub>date</sub>=date(2005, 5, 2)) | Q(pub<sub>date</sub>=date(2005, 5, 6))
+)
+&#x2026; roughly translates into the SQL:
+</p>
+
+<p>
+SELECT * from polls WHERE question LIKE 'Who%'
+    AND (pub<sub>date</sub> = '2005-05-02' OR pub<sub>date</sub> = '2005-05-06')
+Lookup functions can mix the use of Q objects and keyword arguments. All arguments provided to a lookup function (be they keyword arguments or Q objects) are “AND”ed together. However, if a Q object is provided, it must precede the definition of any keyword arguments. For example:
+</p>
+
+<p>
+Poll.objects.get(
+    Q(pub<sub>date</sub>=date(2005, 5, 2)) | Q(pub<sub>date</sub>=date(2005, 5, 6)),
+    question_<sub>startswith</sub>='Who',
+)
+&#x2026; would be a valid query, equivalent to the previous example; but:
+</p>
+
+<p>
+Poll.objects.get(
+    question_<sub>startswith</sub>='Who',
+    Q(pub<sub>date</sub>=date(2005, 5, 2)) | Q(pub<sub>date</sub>=date(2005, 5, 6))
+)
+&#x2026; would not be valid.
+</p>
+</div></li></ol>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">1.1.7</span> django ForegenKey dabaseRepresentation</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<p>
+Behind the scenes, Django appends "<sub>id</sub>" to the field name to create its database column name. In the above example, the database table for the Car model will have a manufacturer<sub>id</sub> column. (You can change this explicitly by specifying db<sub>column</sub>) However, your code should never have to deal with the database column name, unless you write custom SQL. You’ll always deal with the field names of your model object.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">1.2</span> Command line</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">1.2.1</span> table-already-exist</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+since you already have the tables created in the database, you just need to run the initial migration as fake
+./manage.py migrate myapp &#x2013;fake
+make sure that the schema of models is same as schema of tables in database.
+<a href="http://stackoverflow.com/questions/3090648/django-south-table-already-exists">SO linke</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mark</p>
+<p class="date">Created: 2016-10-26 Wed 17:38</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

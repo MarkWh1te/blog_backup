@@ -1,0 +1,12 @@
+#+TITLE: tensorflow
+#+HTML_HEAD: <link rel="stylesheet" href="http://markwh1te.github.io/org.css" type="text/css" >
+
+* Term
+** MNIST
+*** [[https://en.wikipedia.org/wiki/MNIST_database][Mixed National Institute of Standards and Technology database]]
+   
+* Turtorials
+** [[https://github.com/jtoy/awesome-tensorflow][awesome-tensorflow]]
+** [[https://www.tensorflow.org/versions/r0.7/tutorials/index.html][offcial-turtorial]]
+** [[http://colah.github.io/posts/2015-08-Understanding-LSTMs/][rnn]]
+
